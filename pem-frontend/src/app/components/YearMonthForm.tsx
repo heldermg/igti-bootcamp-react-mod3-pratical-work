@@ -16,8 +16,14 @@ function YearMonthForm({
     selectedYear, handleSelectedYearChange, 
     selectedMonth, handleSelectedMonthChange}: IYearMonthFormProps) {
   return (
-    <Box flex="1" display="flex" justifyContent="flex-start" p="1" m="1">
-      <Box component="span" margin="10px">
+    <Box 
+      flex="1" 
+      display="flex" 
+      justifyContent="flex-start" 
+      p="1" m="1">
+      <Box 
+        component="span" 
+        margin="10px">
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <DatePicker
             views={["year"]}
@@ -27,7 +33,9 @@ function YearMonthForm({
           />
         </MuiPickersUtilsProvider>
       </Box>
-      <Box component="span" margin="10px">
+      <Box 
+        component="span" 
+        margin="10px">
         <FormControl>
           <InputLabel id="select-month">Month</InputLabel>
           <Select
@@ -37,7 +45,9 @@ function YearMonthForm({
             onChange={handleSelectedMonthChange}
           >
             {months.map((month: string, idx: number) => (
-              <MenuItem key={idx} value={padStartWithZero((months.indexOf(month)+1), 2)}>
+              <MenuItem 
+                key={idx} 
+                value={padStartWithZero((months.indexOf(month)+1), 2)}>
                 {month}
               </MenuItem>
             ))}
