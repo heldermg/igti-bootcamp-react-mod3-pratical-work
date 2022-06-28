@@ -1,6 +1,7 @@
 import { Box, Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core"
 import { currencyNumberFormat } from "../util/util"
 import { IExpense, Expense } from "../components"
+import { green } from "@material-ui/core/colors"
 
 interface IExpensesProps {
   children: IExpense[]
@@ -22,8 +23,9 @@ function Expenses({ children: expenses }: IExpensesProps) {
         display="flex" 
         alignItems="center"
         justifyContent="flex-end">
-          <span style={{ whiteSpace: "pre" }}>Total Expense: </span>
-          <strong>{currencyNumberFormat.format(totalExpense)}</strong>
+          <strong style={{ whiteSpace: "pre", fontSize: "20px" }}>
+            Total Expense: {currencyNumberFormat.format(totalExpense)}
+          </strong>
       </Box>
       <Table>
         <TableHead>
