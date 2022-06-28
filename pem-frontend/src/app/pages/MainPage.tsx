@@ -12,7 +12,6 @@ export default function MainPage() {
   const [selectedYear, setSelectedYear] = useState<string>(`${yearMonth.substring(0, 4)}`)
   const [selectedMonth, setSelectedMonth] = useState<string>(`${yearMonth.substring(5)}`)
   const history = useHistory()
-  console.log(yearMonth);
   
   useEffect(() => {
     async function getAllExpenses() {
@@ -21,7 +20,6 @@ export default function MainPage() {
       setExpenses(allExpenses)
     }
     getAllExpenses()
-    console.log(expenses);
   }, [yearMonth])
 
   function handleSelectedYearChange(newValue: MaterialUiPickersDate) {
