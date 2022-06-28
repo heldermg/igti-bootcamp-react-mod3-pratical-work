@@ -4,6 +4,7 @@ import { Box } from "@material-ui/core"
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
 import { apiGetAllExpenses } from "../services/apiService"
 import { IExpense, Expenses, Main, YearMonthForm } from "../components"
+import { AxiosError } from "axios"
 
 export default function MainPage() {
   const { yearMonth } = useParams<{ yearMonth: string }>()
@@ -14,9 +15,13 @@ export default function MainPage() {
   
   useEffect(() => {
     async function getAllExpenses() {
-      const allExpenses = await apiGetAllExpenses(yearMonth)
-      
-      setExpenses(allExpenses)
+      try {
+        const allExpenses = await apiGetAllExpenses(yearMonth)
+        setExpenses(allExpenses)
+      } catch (err: unknown) {
+        const typedError = err as AxiosError
+        throw Error(typedError.message)
+      }
     }
     getAllExpenses()
   }, [yearMonth])
