@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { Box } from "@material-ui/core";
-import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
-import { apiGetAllExpenses } from "../services/apiService";
+import { useEffect, useState } from "react"
+import { useHistory, useParams } from "react-router-dom"
+import { Box } from "@material-ui/core"
+import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
+import { apiGetAllExpenses } from "../services/apiService"
 import { IExpense, Expenses, Main, YearMonthForm } from "../components"
 
 export default function MainPage() {

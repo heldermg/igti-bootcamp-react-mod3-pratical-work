@@ -1,9 +1,9 @@
 interface IExpense {
-  id: number,
-  description: string,
-  category: string,
-  value: number,
-  yearMonth: string,
+  id: number
+  description: string
+  category: string
+  value: number
+  yearMonth: string
   day: number
 }
 
