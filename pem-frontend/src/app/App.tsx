@@ -1,19 +1,20 @@
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import MainPage from "./pages/MainPage"
-import { padStartWithZero } from "./util/util"
+import { getTodayYearMonthISO } from "./util/util"
 
 function App() {
-  const today = new Date()
-  const yearMonth = `${today.getFullYear()}-${padStartWithZero((today.getMonth()+1), 2)}`
+  const yearMonth = getTodayYearMonthISO()
+
+  const RootRedirect = () => {
+    return <Navigate to={`/expenses/${yearMonth}`} />
+  }
 
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/expenses/:yearMonth">
-          <MainPage />
-        </Route>
-        <Redirect to={{ pathname: "/expenses/" + yearMonth }} />
-      </Switch>
+      <Routes>
+        <Route path="/expenses/:yearMonth" element={<MainPage />} />
+        <Route path="/" element={<RootRedirect />} />
+      </Routes>
     </BrowserRouter>
   )
 }

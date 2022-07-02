@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Box } from "@material-ui/core"
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
 import { apiGetAllExpenses } from "../services/apiService"
 import { IExpense, Expenses, Main, YearMonthForm } from "../components"
 import { AxiosError } from "axios"
+import { getTodayYearMonthISO } from "../util/util"
 
 export default function MainPage() {
-  const { yearMonth } = useParams<{ yearMonth: string }>()
+  const params = useParams<{ yearMonth: string }>()
+  const yearMonth = params.yearMonth || getTodayYearMonthISO()
   const [expenses, setExpenses] = useState<IExpense[]>([])
   const [selectedYear, setSelectedYear] = useState<string>(`${yearMonth.substring(0, 4)}`)
   const [selectedMonth, setSelectedMonth] = useState<string>(`${yearMonth.substring(5)}`)
-  const history = useHistory()
+  const navigate = useNavigate()
   
   useEffect(() => {
     async function getAllExpenses() {
@@ -30,7 +32,7 @@ export default function MainPage() {
     if (newValue) {
       const newYear = `${newValue.getFullYear().toString()}`
       setSelectedYear(newYear)
-      history.push(`/expenses/${newYear}-${selectedMonth}`)
+      navigate(`/expenses/${newYear}-${selectedMonth}`)
     }
   }
 
@@ -38,7 +40,7 @@ export default function MainPage() {
     if (evt) {
       const newMonth: string = evt.target.value as string
       setSelectedMonth(newMonth)
-      history.push(`/expenses/${selectedYear}-${newMonth}`)
+      navigate(`/expenses/${selectedYear}-${newMonth}`)
     }
   }
 

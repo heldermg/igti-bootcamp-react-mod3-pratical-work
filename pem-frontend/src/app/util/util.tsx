@@ -12,6 +12,11 @@ function padStartWithZero(element: any, length: number): string {
   return element
 }
 
+function getTodayYearMonthISO(): string {
+  const today = new Date()
+  return `${today.getFullYear()}-${padStartWithZero((today.getMonth()+1), 2)}`
+}
+
 const currencyOptions = {
   style: 'currency',
   currency: 'BRL',
@@ -20,4 +25,4 @@ const currencyOptions = {
 
 const currencyNumberFormat = Intl.NumberFormat('pt-BR', currencyOptions)
 
-export { months, currencyNumberFormat, padStartWithZero }
+export { months, currencyNumberFormat, padStartWithZero, getTodayYearMonthISO }
