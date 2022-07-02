@@ -6,7 +6,7 @@ function App() {
   const yearMonth = getTodayYearMonthISO()
 
   const RootRedirect = () => {
-    return <Navigate to={`/expenses/${yearMonth}`} />
+    return <Navigate replace to={`/expenses/${yearMonth}`} />
   }
 
   return (
